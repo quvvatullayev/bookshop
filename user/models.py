@@ -1,11 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import User
 from product.models import Product
 
-class AuthUser(AbstractBaseUser):
+class AuthUser(User):
     name = models.CharField(max_length=30)
     tg_name = models.CharField(max_length=100)
-    email = models.EmailField()
     phone = models.PositiveIntegerField()
 
     def __str__(self) -> str:
