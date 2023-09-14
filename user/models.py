@@ -18,3 +18,10 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         return str(AuthUser.name[:10]+'|'+Product.book_name[:10])
+
+class Like(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return str(AuthUser.name[:10]+'|'+Product.book_name[:10])
