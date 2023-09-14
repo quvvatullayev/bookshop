@@ -6,4 +6,15 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.category_name
 
+class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    book_name = models.CharField(max_length=50)
+    author_name = models.CharField(max_length=50)
+    publisher = models.CharField(max_length=200)
+    pags = models.PositiveIntegerField()
+    isbn = models.PositiveIntegerField()
+    text_format = models.CharField(max_length=40)
+    synopsis = models.TextField()
 
+    def __str__(self) -> str:
+        return self.book_name
