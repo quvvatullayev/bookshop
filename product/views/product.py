@@ -20,15 +20,21 @@ class ProductListCreateView(generics.ListCreateAPIView):
 
         advertisement_obj = Advertisement.objects.all()
         advertisement = AdvertisementSerializer(advertisement_obj, many = True).data
-
+        
         data = {
             'products':products,
             'new_products':new_product,
             'advertisements':advertisement,
         }
-        
         categorys_obj = Category.objects.all()
         categorys = CategorySerializer(categorys_obj, many = True).data
+
+        data = {
+            'products':products,
+            'new_products':new_product,
+            'advertisements':advertisement,
+            'categorys':categorys,
+        }
 
         for i in categorys:
             product_obj = Product.objects.filter(category = i['id'])
