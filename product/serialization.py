@@ -21,7 +21,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         model = Advertisement
         fields = '__all__'
 
-class AuthorSerializer(serializers.ModelSerializer):
+class AuthorBooksSerializer(serializers.ModelSerializer):
     class Meta:
         model = AuthorBook
         fields = '__all__'
