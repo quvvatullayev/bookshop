@@ -5,6 +5,15 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return self.category_name
+    
+class AuthorBook(models.Model):
+    name = models.CharField(max_length=50)
+    img = models.ImageField(upload_to='author_book', default='static/authimg/authimg.png', blank=True)
+    desctiption = models.TextField()
+    gender = models.BooleanField(default=True, blank=True, help_text='Is author\'s gender male')
+
+    def __str__(self) -> str:
+        return self.name
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

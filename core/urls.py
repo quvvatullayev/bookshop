@@ -28,4 +28,4 @@ urlpatterns = [
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('', include('product.urls')),
     path('auth/', include('user.urls')),
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)
