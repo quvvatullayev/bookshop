@@ -6,4 +6,6 @@ class AuthorBooksListCreateView(generics.ListCreateAPIView):
     queryset = AuthorBook.objects.all()
     serializer_class = AuthorBooksSerializer
 
-    
+class AuthorBookRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AuthorBook
+    serializer_class = AuthorBooksSerializer
