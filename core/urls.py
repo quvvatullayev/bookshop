@@ -25,7 +25,7 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('admin/', admin.site.urls),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('', include('product.urls')),
-    path('auth/', include('user.urls')),
+    path('auth/', include('rest_framework.urls')),
+    path('book/', include('product.urls')),
+    path('author/', include('user.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)
