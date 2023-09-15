@@ -2,6 +2,7 @@ from rest_framework import generics
 from ..models import Product 
 from ..serialization import ProductSerializer
 from rest_framework.response import Response
+from django.contrib import messages
 
 class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -10,6 +11,14 @@ class ProductListCreateView(generics.ListCreateAPIView):
 class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def update(self, request, *args, **kwargs):
+        messages.success(self.request, "this book has been updated.", extra_tags='success')
+        return super().update(request, *args, **kwargs)
+    
+    def destroy(self, request, *args, **kwargs):
+        messages.success(self.request, "this book has been delete.", extra_tags='success')
+        return super().destroy(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):
         product_obj = Product.objects.get(id = kwargs['pk'])
