@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from django.contrib import messages
 from ..models import Category
 from ..serialization import CategorySerializer
+from .advertisement import Advertisement, AdvertisementSerializer
 
 class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -17,9 +18,13 @@ class ProductListCreateView(generics.ListCreateAPIView):
         new_product_obj = Product.objects.all()[:10]
         new_product = ProductSerializer(new_product_obj, many = True).data
 
+        advertisement_obj = Advertisement.objects.all()
+        advertisement = AdvertisementSerializer(advertisement_obj, many = True).data
+
         data = {
             'products':products,
-            'new_products':new_product
+            'new_products':new_product,
+            'advertisements':advertisement,
         }
         
         categorys_obj = Category.objects.all()
