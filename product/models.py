@@ -16,5 +16,8 @@ class Product(models.Model):
     text_format = models.CharField(max_length=40)
     synopsis = models.TextField()
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self) -> str:
         return self.book_name
