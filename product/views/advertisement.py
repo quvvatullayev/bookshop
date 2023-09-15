@@ -6,3 +6,6 @@ class AdvertisementListCreateView(generics.ListCreateAPIView):
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
 
+class AdvertisementRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Advertisement.objects.all()
+    serializer_class = AdvertisementSerializer
