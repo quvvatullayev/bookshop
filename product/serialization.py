@@ -3,6 +3,7 @@ from .models import (
     Category,
     Product,
     Advertisement,
+    AuthorBook
 )
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -18,4 +19,9 @@ class ProductSerializer(serializers.ModelSerializer):
 class AdvertisementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisement
+        fields = '__all__'
+
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AuthorBook
         fields = '__all__'
