@@ -21,3 +21,13 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.book_name
+    
+class Advertisement(models.Model):
+    img = models.ImageField(upload_to='advertisement')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-id']
+
+    def __str__(self) -> str:
+        return self.product.book_name
