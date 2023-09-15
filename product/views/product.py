@@ -3,10 +3,34 @@ from ..models import Product
 from ..serialization import ProductSerializer
 from rest_framework.response import Response
 from django.contrib import messages
+from ..models import Category
+from ..serialization import CategorySerializer
 
 class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def list(self, request, *args, **kwargs):
+        products_obj = Product.objects.all()
+        products = ProductSerializer(products_obj, many = True).data
+
+        new_product_obj = Product.objects.all()[:10]
+        new_product = ProductSerializer(new_product_obj, many = True).data
+
+        data = {
+            'products':products,
+            'new_products':new_product
+        }
+        
+        categorys_obj = Category.objects.all()
+        categorys = CategorySerializer(categorys_obj, many = True).data
+
+        for i in categorys:
+            product_obj = Product.objects.filter(category = i['id'])
+            product = ProductSerializer(product_obj, many = True).data
+            data[i['category_name']] = product
+
+        return Response(data=data)
 
 class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
