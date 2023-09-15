@@ -18,7 +18,7 @@ class AuthorBook(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     book_name = models.CharField(max_length=50)
-    author_name = models.CharField(max_length=50)
+    author_book = models.ForeignKey(AuthorBook, on_delete=models.CASCADE)
     publisher = models.CharField(max_length=200)
     pags = models.PositiveIntegerField()
     isbn = models.PositiveIntegerField()
