@@ -58,9 +58,9 @@ class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     def retrieve(self, request, *args, **kwargs):
         product_obj = Product.objects.get(id = kwargs['pk'])
         product = ProductSerializer(product_obj, many=False).data
-        author_name = product['author_name']
+        author_book = product['author_book']
 
-        author_book_obj = Product.objects.filter(author_name = author_name)
+        author_book_obj = Product.objects.filter(author_book = author_book)
         author_book = ProductSerializer(author_book_obj, many = True).data
 
         category_book_obj = Product.objects.filter(category = product['category'])
