@@ -26,6 +26,6 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('admin/', admin.site.urls),
     path('auth/', include('rest_framework.urls')),
-    path('book/', include('product.urls')),
+    path('', include('product.urls')),
     path('author/', include('user.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.STATIC_ROOT)
