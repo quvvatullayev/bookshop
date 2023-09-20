@@ -6,10 +6,13 @@ from django.contrib import messages
 from ..models import Category
 from ..serialization import CategorySerializer
 from .advertisement import Advertisement, AdvertisementSerializer
+# from rest_framework.permissions import IsAdminUser,IsAuthenticatedOrReadOnly
+from user.permission import IsAdminUser
 
 class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    # permission_classes = [IsAdminUser]
 
     def list(self, request, *args, **kwargs):
         products_obj = Product.objects.all()
