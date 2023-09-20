@@ -7,7 +7,7 @@ from .views.authorbooks import AuthorBooksListCreateView, AuthorBookRetrieveUpda
 
 app_name = 'category'
 urlpatterns = [
-    path('category/', CategoryListCreateView.as_view()),
+    path('category/', CategoryListCreateView.as_view(), name='category_list'),
     path('category/<int:pk>/', CategoryRetrieveUpdateDestroyView.as_view()),
 
     path('product/', ProductListCreateView.as_view()),

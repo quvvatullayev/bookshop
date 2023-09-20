@@ -56,6 +56,7 @@ class ProductListCreateView(generics.ListCreateAPIView):
 class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAdminUser|ReadOnly]
 
     def update(self, request, *args, **kwargs):
         messages.success(self.request, "this book has been updated.", extra_tags='success')
