@@ -8,8 +8,8 @@ from ..serialization import CategorySerializer
 from .advertisement import Advertisement, AdvertisementSerializer
 from rest_framework.permissions import IsAdminUser
 from rest_framework.permissions import BasePermission, SAFE_METHODS
-from django.contrib.auth.models import User
-from rest_framework.request import Request
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 class ReadOnly(BasePermission):
     def has_permission(self, request, view):
@@ -20,6 +20,10 @@ class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAdminUser|ReadOnly]
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['book_name', 'author_book', 'category']
+    
 
     def list(self, request, *args, **kwargs):
         products_obj = Product.objects.all()
