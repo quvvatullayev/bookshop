@@ -9,7 +9,7 @@ from .advertisement import Advertisement, AdvertisementSerializer
 from rest_framework.permissions import IsAdminUser
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 from django_filters.rest_framework import DjangoFilterBackend
-
+from rest_framework import filters
 
 class ReadOnly(BasePermission):
     def has_permission(self, request, view):
@@ -21,8 +21,9 @@ class ProductListCreateView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     permission_classes = [IsAdminUser|ReadOnly]
 
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['book_name', 'author_book', 'category']
+    search_fields = ['book_name', 'author_book',]
     
 
     def list(self, request, *args, **kwargs):
@@ -61,6 +62,10 @@ class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAdminUser|ReadOnly]
+    
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['book_name', 'author_book', 'category']
+    search_fields = ['book_name', 'author_book',]
 
     def update(self, request, *args, **kwargs):
         messages.success(self.request, "this book has been updated.", extra_tags='success')
