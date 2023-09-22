@@ -5,14 +5,18 @@ from ..models import Product
 from ..serialization import ProductSerializer
 from rest_framework.reverse import reverse, reverse_lazy
 from rest_framework.response import Response
+from rest_framework.permissions import IsAdminUser
+from user.views.authuser import ReadOnly
 
 class AdvertisementListCreateView(generics.ListCreateAPIView):
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
+    permission_classes = [IsAdminUser|ReadOnly]
 
 class AdvertisementRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
+    permission_classes = [IsAdminUser|ReadOnly]
     
     def retrieve(self, request, *args, **kwargs):
         advertisement_obj = Advertisement.objects.get(id = kwargs['pk'])
