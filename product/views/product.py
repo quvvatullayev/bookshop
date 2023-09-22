@@ -7,14 +7,9 @@ from ..models import Category
 from ..serialization import CategorySerializer
 from .advertisement import Advertisement, AdvertisementSerializer
 from rest_framework.permissions import IsAdminUser
-from rest_framework.permissions import BasePermission, SAFE_METHODS
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
-
-class ReadOnly(BasePermission):
-    def has_permission(self, request, view):
-        return request.method in SAFE_METHODS
-
+from user.views.authuser import ReadOnly
 
 class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
