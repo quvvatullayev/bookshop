@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from product.models import Product
 
 class AuthUser(User):
-    name = models.CharField(max_length=30)
+    # name = models.CharField(max_length=30)
     tg_name = models.CharField(max_length=100)
     phone = models.PositiveIntegerField()
 

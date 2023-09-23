@@ -10,7 +10,7 @@ from user.views.authuser import ReadOnly
 class CategoryListCreateView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAdminUser|ReadOnly]
+    permission_classes = [ReadOnly]
 
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['category_name']
@@ -19,7 +19,7 @@ class CategoryListCreateView(generics.ListCreateAPIView):
 class CategoryRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAdminUser|ReadOnly]
+    permission_classes = [ReadOnly]
 
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['category_name']
